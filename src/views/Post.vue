@@ -29,25 +29,17 @@ const submitComment = () => {
   })
 }
 
-const onClickAction = (action: String, postId: Number, value: Boolean, isComment: boolean) => {
+const onClickAction = (action: String, payload: any, value: Boolean) => {
   let path
   switch (action) {
     case 'follow':
       path = value ? 'follow' : 'unfollow'
-      account = fetch(`/api/account/${path}-post`, 'POST', { post_id: postId })
-      console.log(account)
+      account = fetch(`/api/account/${path}-post`, 'POST', payload)
       break;
     case 'like':
-      const resource = isComment ? 'comment' : 'post'
-      const paylod = {}
+      // const resource = payload['comment_id'] ? 'comment' : 'post'
       path = value ? 'like' : 'unlike'
-      // if(isComment) {
-
-      // } else {
-      //   paylod.
-      // }
-      fetch(`/api/account/${path}-${resource}`, 'POST', { post_id: postId })
-      console.log(account)
+      account = fetch(`/api/account/${path}-post`, 'POST', payload)
       break;
     default:
       console.error('Invalid action')
@@ -86,8 +78,8 @@ const onClickAction = (action: String, postId: Number, value: Boolean, isComment
             <v-card prepend-icon="mdi-account" :subtitle="comment.username" :text="comment.text">
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <PostActionsVue v-if="comment.username !== account.username" :post="comment" :isComment=true
-                  :account="account" :onClickAction="onClickAction" />
+                <!-- <PostActionsVue v-if="comment.username !== account.username" :post="post" :isComment=true
+                  :account="account" :onClickAction="onClickAction" :comment="comment" /> -->
               </v-card-actions>
             </v-card>
           </v-list>

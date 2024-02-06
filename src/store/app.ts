@@ -114,10 +114,10 @@ export const store = createStore({
       state.account.following = state.account.following.filter(f => f !== payload.post_id)
     },
     likePost (state, payload) {
-      state.account.liked_posts.push(payload.id)
+      state.account.liked_posts.push(payload.post_id)
     },
     unlikePost (state, payload) {
-      state.account.liked_posts.filter(post => post !== payload.id)
+      state.account.liked_posts.filter(post => post !== payload.post_id)
     },
   },
   getters: {
