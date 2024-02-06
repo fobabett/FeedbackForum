@@ -5,6 +5,9 @@ export const fetch = (url: string, method: string, body: any = null) => {
     if (method === 'GET') {
       return store.getters.getPosts
     }
+    if (method === 'POST') {
+      store.commit('sharePost', { content: body, comments: [], likes: 0, user: { username: 'demo_user', id: 4 }})
+    }
   }
   if (url === '/api/comments') {
     if (method === 'POST') {
@@ -15,16 +18,6 @@ export const fetch = (url: string, method: string, body: any = null) => {
   if (url === '/api/account') {
     if (method === 'GET') {
       return store.getters.getAccount
-    }
-  }
-  if (url === '/api/account/like-commment') {
-    if (method === 'POST') {
-      store.commit('likeComment', body)
-    }
-  }
-  if (url === '/api/account/unlike-commment') {
-    if (method === 'POST') {
-      store.commit('unlikeComment', body)
     }
   }
   if (url === '/api/account/follow-post') {

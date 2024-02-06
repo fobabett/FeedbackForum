@@ -58,7 +58,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
           <v-card prepend-icon="mdi-account" :title="post.content.title" :subtitle="post.user.username"
             :text="post.content.description" variant="tonal">
             <div v-html="post.content.media"></div>
-            <PostActionsVue :post="post" :isComment=false :account="account" :onClickAction="onClickAction" />
+            <PostActionsVue v-if="post.user.username !== account.username" :post="post" :isComment=false :account="account" :onClickAction="onClickAction" />
           </v-card>
         </v-col>
 

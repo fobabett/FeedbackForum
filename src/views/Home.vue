@@ -13,11 +13,17 @@ onMounted(async () => {
   account = fetch(`/api/account`, 'GET')
 })
 
-const onClickAction = (action: String, postId: Number, value: Boolean) => {
-  switch(action) {
+const onClickAction = (action: String, payload: any, value: Boolean) => {
+  let path
+  switch (action) {
     case 'follow':
-      const path = value ? 'follow' : 'unfollow'
-      fetch(`/api/account/${path}-post`, 'POST', { post_id: postId })
+      path = value ? 'follow' : 'unfollow'
+      account = fetch(`/api/account/${path}-post`, 'POST', payload)
+      break;
+    case 'like':
+      // const resource = payload['comment_id'] ? 'comment' : 'post'
+      path = value ? 'like' : 'unlike'
+      account = fetch(`/api/account/${path}-post`, 'POST', payload)
       break;
     default:
       console.error('Invalid action')
@@ -27,20 +33,18 @@ const onClickAction = (action: String, postId: Number, value: Boolean) => {
 </script>
 
 <template>
-  <NavVue />
+  <NavVue :router="router" />
   <v-main>
     <v-container fluid class="w-75">
       <v-row dense>
         <v-col v-for="post in posts" :key="post.id" cols="12">
-          <v-col cols="12">
-            <v-card v-on:click="router.push(`/posts/${post.id}`)" prepend-icon="mdi-account" :title="post.content.title"
-              :subtitle="post.user.username" :text="`${post.content.description.slice(0, 100)}...`" variant="tonal">
-              <v-container class="h-25">
-                <div v-html="post.content.media"></div>
-              </v-container>
-              <PostActionsVue :post="post" :isComment=false :account="account" :onClickAction="onClickAction" />
-            </v-card>
-          </v-col>
+          <v-card v-on:click="router.push(`/posts/${post.id}`)" prepend-icon="mdi-account" :title="post.content.title"
+            :subtitle="post.user.username" :text="`${post.content.description.slice(0, 100)}...`" variant="tonal">
+            <v-container class="h-25">
+              <div v-html="post.content.media"></div>
+            </v-container>
+            <PostActionsVue v-if="post.user.username !== account.username" :post="post" :isComment=false :account="account" :onClickAction="onClickAction" />
+          </v-card>
         </v-col>
       </v-row>
     </v-container>

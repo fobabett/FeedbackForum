@@ -119,6 +119,9 @@ export const store = createStore({
     unlikePost (state, payload) {
       state.account.liked_posts.filter(post => post !== payload.post_id)
     },
+    sharePost (state, payload) {
+      state.posts.unshift(payload)
+    }
   },
   getters: {
     getPosts: (state) => {

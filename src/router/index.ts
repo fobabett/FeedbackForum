@@ -8,6 +8,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeVue from '@/views/Home.vue'
 import PostVue from '@/views/Post.vue'
+import NewPostVue from '@/views/NewPost.vue'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
@@ -21,6 +22,11 @@ const router = createRouter({
       path: '/posts/:id',
       name: 'post',
       component: PostVue
+    },
+    {
+      path: '/posts/new',
+      name: 'newpost',
+      component: NewPostVue
     }
   ]
 })
