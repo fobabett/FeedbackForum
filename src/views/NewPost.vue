@@ -1,9 +1,10 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, onBeforeMount } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import router from '@/router';
 import { fetch } from '../api'
+import NavVue from '../components/Nav.vue'
 
 const generes = [
   'EDM',
@@ -30,6 +31,12 @@ const rules = {
   description: {}
 }
 
+let account
+
+onBeforeMount(async () => {
+  account = fetch(`/api/account`, 'GET')
+})
+
 const state = reactive({
   ...initialState,
 })
@@ -42,6 +49,7 @@ const shareSong = async () => {
 }
 </script>
 <template>
+  <NavVue :router="router" :account="account" :fetch="fetch" />
   <v-container fluid class="w-75">
     <v-row dense>
       <v-col cols="12">

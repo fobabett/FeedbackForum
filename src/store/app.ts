@@ -85,7 +85,8 @@ const account = {
       title: 'New comment',
       post_id: 0
     }
-  ]
+  ],
+  posts: []
 }
 
 export const store = createStore({
@@ -93,12 +94,14 @@ export const store = createStore({
     ...mapGetters([
       'getPosts',
       'getPostById',
-      'getAccount'
+      'getAccount',
+      'getPostFollowing'
     ])
   },
   state: {
     posts: [...mockPosts],
-    account: account
+    account: account,
+    following: []
   },
   mutations: {
     submitComment (state, payload) {
@@ -139,6 +142,12 @@ export const store = createStore({
     },
     getPostById: (state) => (id: Number) => {
       return state.posts.find(post => post.id === id)
+    },
+    getPostFollowing: (state) => {
+      return state.following = state.posts.filter(post => state.account.following.includes(post.id))
+    },
+    getAccountPosts: (state) => {
+      return state.account.posts = state.posts.filter(post => post.user.id === state.account.id)
     },
     getAccount: (state) => {
       return state.account

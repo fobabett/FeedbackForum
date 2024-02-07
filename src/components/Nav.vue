@@ -1,9 +1,14 @@
 <script setup>
 const props = defineProps(["router", "account", "fetch"])
 const notificationCount = props.account.notifications.length
+const profileLinks = [{ title: 'Following', link: '/account/following' }, { title: 'My Posts', link: '/account/posts' }]
 const viewNotification = (notification) => {
   props.fetch('/api/account/notification', 'POST', notification)
   props.router.push(`/posts/${notification.post_id}`)
+}
+
+const route = (link) => {
+  props.router.push(link)
 }
 </script>
 
@@ -26,7 +31,7 @@ const viewNotification = (notification) => {
 
         <v-list>
           <v-list-item v-for="notification in props.account.notifications" :key="notification.id">
-            <v-list-item-title @click="viewNotification(notification)">{{ notification.title }} on a Post you
+            <v-list-item-title @click="viewNotification(notification)">{{ notification.title }} on a song you
               follow.</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -36,9 +41,17 @@ const viewNotification = (notification) => {
         <v-icon>mdi-bell-outline</v-icon>
       </v-btn>
 
-      <template v-slot:append>
-        <v-btn icon="mdi-account"></v-btn>
-      </template>
+      <v-menu>
+        <template v-slot:activator="{ props }" v-slot:append>
+          <v-btn v-bind="props" icon="mdi-account"></v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item v-for="link in profileLinks" :key="link.link">
+            <v-list-item-title @click="route(link.link)">{{ link.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </v-app-bar>
   </v-main>
 </template>

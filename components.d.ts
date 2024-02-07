@@ -10,6 +10,7 @@ declare module 'vue' {
     CommentIcon: typeof import('./src/components/CommentIcon.vue')['default']
     Nav: typeof import('./src/components/Nav.vue')['default']
     PostActions: typeof import('./src/components/PostActions.vue')['default']
+    PostList: typeof import('./src/components/PostList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

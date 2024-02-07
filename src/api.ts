@@ -20,6 +20,16 @@ export const fetch = (url: string, method: string, body: any = null) => {
       return store.getters.getAccount
     }
   }
+  if (url === '/api/account/following') {
+    if (method === 'GET') {
+      return store.getters.getPostFollowing
+    }
+  }
+  if (url === '/api/account/posts') {
+    if (method === 'GET') {
+      return store.getters.getAccountPosts
+    }
+  }
   if (url === '/api/account/follow-post') {
     if (method === 'POST') {
       store.commit('followPost', body)
