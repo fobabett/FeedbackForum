@@ -56,9 +56,11 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
   <v-container fluid class="w-75">
     <v-row v-if="post.content" dense>
       <v-col cols="12" class="mb-5">
-        <v-card prepend-icon="mdi-account" :title="post.content.title" :subtitle="post.user.username"
-          :text="post.content.description" variant="tonal">
+        <v-card prepend-icon="mdi-account" :title="post.content.title" :subtitle="post.user.username" variant="tonal">
           <div v-html="post.content.media"></div>
+          <v-container>
+            <p>{{ post.content.description }}</p>
+          </v-container>
           <PostActionsVue v-if="post.user.username !== account.username" :post="post" :isComment=false :account="account"
             :onClickAction="onClickAction" />
         </v-card>
