@@ -51,6 +51,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
+  <SideNav :router="router" />
   <v-main>
     <v-container fluid class="w-75">
       <v-row v-if="post.content" dense>

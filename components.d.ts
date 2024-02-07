@@ -13,5 +13,6 @@ declare module 'vue' {
     PostList: typeof import('./src/components/PostList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNav: typeof import('./src/components/SideNav.vue')['default']
   }
 }

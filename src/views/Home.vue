@@ -4,6 +4,7 @@ import NavVue from '../components/Nav.vue'
 import PostListVue from '../components/PostList.vue'
 import { fetch } from '../api'
 import router from '@/router';
+import SideNav from '@/components/SideNav.vue';
 
 let posts = []
 let account = {}
@@ -34,9 +35,8 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
-  <v-main>
-    <v-container fluid class="w-75">
-      <PostListVue :onClickAction="onClickAction" :posts="posts" :account="account" :router="router" />
-    </v-container>
-  </v-main>
+  <SideNav :router="router" />
+  <v-container fluid>
+    <PostListVue :onClickAction="onClickAction" :posts="posts" :account="account" :router="router" />
+  </v-container>
 </template>

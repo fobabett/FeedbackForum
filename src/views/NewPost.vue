@@ -6,18 +6,6 @@ import router from '@/router';
 import { fetch } from '../api'
 import NavVue from '../components/Nav.vue'
 
-const generes = [
-  'EDM',
-  'Hip Hop',
-  'Jazz',
-  'Pop',
-  'R&B',
-  'Orchestral',
-  '8-Bit',
-  'Rock',
-  'Metal',
-  'Other'
-]
 const initialState = {
   title: '',
   media: '',
@@ -50,6 +38,7 @@ const shareSong = async () => {
 </script>
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
+  <SideNav :router="router" />
   <v-container fluid class="w-75">
     <v-row dense>
       <v-col cols="12">

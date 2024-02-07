@@ -4,6 +4,7 @@ import NavVue from '../components/Nav.vue'
 import PostListVue from '../components/PostList.vue'
 import { fetch } from '../api'
 import router from '@/router';
+import SideNav from '@/components/SideNav.vue';
 
 let posts = []
 let account = {}
@@ -34,20 +35,20 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
-  <v-main>
-    <v-container fluid class="w-75">
-      <v-row>
-        <v-col cols="12">
-          <h1>Following</h1>
-        </v-col>
-      </v-row>
-      <PostListVue v-if="account.following.length > 0" :onClickAction="onClickAction" :posts="posts" :account="account"
-        :router="router" />
-      <v-row v-else>
-        <v-col cols="12">
-          <p>You aren't following any songs at this time. Check out the <a @click="router.push('/')">Feed</a> and follow some songs!</p>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+  <SideNav :router="router" />
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12">
+        <h1>Following</h1>
+      </v-col>
+    </v-row>
+    <PostListVue v-if="account.following.length > 0" :onClickAction="onClickAction" :posts="posts" :account="account"
+      :router="router" />
+    <v-row v-else>
+      <v-col cols="12">
+        <p>You aren't following any songs at this time. Check out the <a @click="router.push('/')">Feed</a> and follow
+          some songs!</p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
