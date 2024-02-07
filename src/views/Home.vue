@@ -36,7 +36,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
   <SideNav :router="router" />
-  <v-container fluid>
+  <v-container fluid class="w-75">
     <PostListVue :onClickAction="onClickAction" :posts="posts" :account="account" :router="router" />
   </v-container>
 </template>

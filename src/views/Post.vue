@@ -3,6 +3,7 @@ import { onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 import router from '@/router';
 import NavVue from '../components/Nav.vue'
+import SideNav from '../components/SideNav.vue'
 import PostActionsVue from '../components/PostActions.vue'
 import { fetch } from '../api'
 
@@ -52,40 +53,32 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 <template>
   <NavVue :router="router" :account="account" :fetch="fetch" />
   <SideNav :router="router" />
-  <v-main>
-    <v-container fluid class="w-75">
-      <v-row v-if="post.content" dense>
-        <v-col cols="12">
-          <v-card prepend-icon="mdi-account" :title="post.content.title" :subtitle="post.user.username"
-            :text="post.content.description" variant="tonal">
-            <div v-html="post.content.media"></div>
-            <PostActionsVue v-if="post.user.username !== account.username" :post="post" :isComment=false :account="account" :onClickAction="onClickAction" />
+  <v-container fluid class="w-75">
+    <v-row v-if="post.content" dense>
+      <v-col cols="12" class="mb-5">
+        <v-card prepend-icon="mdi-account" :title="post.content.title" :subtitle="post.user.username"
+          :text="post.content.description" variant="tonal">
+          <div v-html="post.content.media"></div>
+          <PostActionsVue v-if="post.user.username !== account.username" :post="post" :isComment=false :account="account"
+            :onClickAction="onClickAction" />
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" class="mb-5">
+        <v-form @submit.prevent>
+          <v-textarea label="Enter feedback..." variant="outlined" v-on:input="$emit('input', $event.target.value)"
+            v-model="commentInput"></v-textarea>
+          <v-btn type="submit" class="mt-4" color="primary" @click="submitComment">Submit Feedback</v-btn>
+        </v-form>
+      </v-col>
+
+      <v-col cols="12">
+        <h2>Comments</h2>
+        <v-list lines="three" v-for="comment in post.comments" :key="comment.id" class="mb-5">
+          <v-card prepend-icon="mdi-account" :subtitle="comment.username" :text="comment.text" variant="flat">
           </v-card>
-        </v-col>
-
-        <v-divider></v-divider>
-
-        <v-col cols="12">
-          <v-form @submit.prevent>
-            <v-textarea label="Enter feedback..." variant="outlined" v-on:input="$emit('input', $event.target.value)"
-              v-model="commentInput"></v-textarea>
-            <v-btn type="submit" block class="mt-2" color="primary" @click="submitComment">Submit Feedback</v-btn>
-          </v-form>
-        </v-col>
-
-        <v-col cols="12">
-          <h2>Comments</h2>
-          <v-list lines="three" v-for="comment in post.comments" :key="comment.id">
-            <v-card prepend-icon="mdi-account" :subtitle="comment.username" :text="comment.text">
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <!-- <PostActionsVue v-if="comment.username !== account.username" :post="post" :isComment=true
-                  :account="account" :onClickAction="onClickAction" :comment="comment" /> -->
-              </v-card-actions>
-            </v-card>
-          </v-list>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+        </v-list>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>

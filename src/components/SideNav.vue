@@ -7,7 +7,7 @@
   <v-navigation-drawer theme="dark" permanent>
     <v-list color="transparent">
       <v-list-item prepend-icon="mdi-home" title="Home" @click="router.push(`/`)"></v-list-item>
-      <v-list-item prepend-icon="mdi-chart" title="Trending" @click="router.push(`/`)"></v-list-item>
+      <v-list-item prepend-icon="mdi-trending-up" title="Trending" @click="router.push(`/`)"></v-list-item>
       <v-divider></v-divider>
       <v-list-item title="Genres"></v-list-item>
       <v-list-item prepend-icon="mdi-music" title="EDM" @click="router.push(`/?=EDM`)"></v-list-item>
