@@ -40,6 +40,11 @@ export const fetch = (url: string, method: string, body: any = null) => {
       store.commit('unlike-post', body)
     }
   }
+  if (url === '/api/account/notification') {
+    if (method === 'POST') {
+      store.commit('removeNotification', body)
+    }
+  }
   url = url.replaceAll('/api/posts/', '')
   if(url.length > 0) {
     const postId = parseInt(url)

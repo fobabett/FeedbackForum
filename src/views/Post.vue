@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, computed } from 'vue'
+import { onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 import router from '@/router';
 import NavVue from '../components/Nav.vue'
@@ -15,7 +15,7 @@ let account = {}
 console.log(store.state.account)
 
 
-onMounted(async () => {
+onBeforeMount(async () => {
   account = fetch(`/api/account`, 'GET')
   post = fetch(`/api/posts/${postId}`, 'GET')
 })
@@ -50,7 +50,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 </script>
 
 <template>
-  <NavVue />
+  <NavVue :router="router" :account="account" :fetch="fetch" />
   <v-main>
     <v-container fluid class="w-75">
       <v-row v-if="post.content" dense>

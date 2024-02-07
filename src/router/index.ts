@@ -24,7 +24,7 @@ const router = createRouter({
       component: PostVue
     },
     {
-      path: '/posts/new',
+      path: '/new',
       name: 'newpost',
       component: NewPostVue
     }

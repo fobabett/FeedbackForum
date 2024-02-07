@@ -76,9 +76,16 @@ const mockPosts = [
 const account = {
   username: 'demo_user',
   id: 4,
-  following: [],
+  following: [0],
   liked_posts: [],
-  liked_comments: []
+  liked_comments: [],
+  notifications: [
+    {
+      id: 0,
+      title: 'New comment',
+      post_id: 0
+    }
+  ]
 }
 
 export const store = createStore({
@@ -121,6 +128,9 @@ export const store = createStore({
     },
     sharePost (state, payload) {
       state.posts.unshift(payload)
+    },
+    removeNotification (state, payload) {
+      state.account.notifications = state.account.notifications.filter(n => n.id !== payload.id)
     }
   },
   getters: {

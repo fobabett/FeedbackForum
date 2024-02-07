@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 import NavVue from '../components/Nav.vue'
 import PostActionsVue from '../components/PostActions.vue'
 import { fetch } from '../api'
@@ -8,7 +8,7 @@ import router from '@/router';
 let posts = []
 let account = {}
 
-onMounted(async () => {
+onBeforeMount(async () => {
   posts = fetch('/api/posts', 'GET')
   account = fetch(`/api/account`, 'GET')
 })
@@ -33,7 +33,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
 </script>
 
 <template>
-  <NavVue :router="router" />
+  <NavVue :router="router" :account="account" :fetch="fetch" />
   <v-main>
     <v-container fluid class="w-75">
       <v-row dense>
