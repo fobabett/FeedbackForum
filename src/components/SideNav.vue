@@ -1,5 +1,5 @@
-<script setup>
-  import { generes } from '../constants.ts'
+<script setup lang="ts">
+  // import { generes } from '../constants.ts'
   const props = defineProps(['router'])
   const filter = props.router.currentRoute.value.query[""]
 </script>

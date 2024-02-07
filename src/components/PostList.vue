@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import PostActionsVue from './PostActions.vue'
 
 const props = defineProps(['posts', 'account', 'onClickAction', 'router'])

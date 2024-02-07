@@ -2,14 +2,15 @@
 import { onBeforeMount, computed } from 'vue'
 import { useStore } from 'vuex'
 import router from '@/router';
-import NavVue from '../components/Nav.vue'
-import SideNav from '../components/SideNav.vue'
-import PostActionsVue from '../components/PostActions.vue'
+import NavVue from '@/components/Nav.vue'
+import SideNav from '@/components/SideNav.vue'
+import PostActionsVue from '@/components/PostActions.vue'
 import { fetch } from '../api'
 
 const store = useStore()
 const postId = router.currentRoute.value.params.id
 
+let posts = []
 let post = {}
 let account = {}
 
@@ -17,8 +18,9 @@ console.log(store.state.account)
 
 
 onBeforeMount(async () => {
-  account = fetch(`/api/account`, 'GET')
+  posts = fetch('/api/posts', 'GET')
   post = fetch(`/api/posts/${postId}`, 'GET')
+  account = fetch(`/api/account`, 'GET')
 })
 
 let commentInput = ''

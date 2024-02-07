@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps(['post', "isComment", "account", "onClickAction", "comment"])
 // const isFollowing = !props.isComment && props.account.following.includes(props.post.id)
 </script>

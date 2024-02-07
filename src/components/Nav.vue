@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const props = defineProps(["router", "account", "fetch"])
 const notificationCount = props.account.notifications.length
 const profileLinks = [{ title: 'Following', link: '/account/following' }, { title: 'My Posts', link: '/account/posts' }]

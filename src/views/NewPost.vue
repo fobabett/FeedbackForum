@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { reactive, onBeforeMount } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import router from '@/router';
 import { fetch } from '../api'
-import NavVue from '../components/Nav.vue'
+import NavVue from '@/components/Nav.vue'
 
 const initialState = {
   title: '',

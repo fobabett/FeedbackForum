@@ -1,13 +1,15 @@
 <script lang="ts" setup>
 import { onBeforeMount } from 'vue'
-import NavVue from '../components/Nav.vue'
-import PostListVue from '../components/PostList.vue'
+import NavVue from '@/components/Nav.vue'
+import PostListVue from '@/components/PostList.vue'
 import { fetch } from '../api'
 import router from '@/router';
 import SideNav from '@/components/SideNav.vue';
 
 let posts = []
 let account = {}
+
+console.log(router)
 
 onBeforeMount(async () => {
   posts = fetch('/api/posts', 'GET')

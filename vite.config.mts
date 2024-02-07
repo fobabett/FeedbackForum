@@ -42,7 +42,7 @@ export default defineConfig({
       ],
       dts: true,
       eslintrc: {
-        enabled: true,
+        enabled: false,
       },
       vueTemplate: true,
     }),

@@ -90,14 +90,14 @@ const account = {
 }
 
 export const store = createStore({
-  computed: {
-    ...mapGetters([
-      'getPosts',
-      'getPostById',
-      'getAccount',
-      'getPostFollowing'
-    ])
-  },
+  // computed: {
+  //   ...mapGetters([
+  //     'getPosts',
+  //     'getPostById',
+  //     'getAccount',
+  //     'getPostFollowing'
+  //   ])
+  // },
   state: {
     posts: [...mockPosts],
     account: account,
