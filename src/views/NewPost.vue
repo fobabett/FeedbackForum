@@ -33,7 +33,7 @@ const v$ = useVuelidate(rules, state)
 
 const shareSong = async () => {
   fetch('/api/posts', 'POST', state)
-  router.push("/")
+  router.push("/FeedbackForum/")
 }
 </script>
 <template>

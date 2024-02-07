@@ -16,27 +16,27 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/FeedbackForum/',
       name: 'home',
       component: HomeVue
     },
     {
-      path: '/posts/:id',
+      path: '/FeedbackForum/posts/:id',
       name: 'post',
       component: PostVue
     },
     {
-      path: '/new',
+      path: '/FeedbackForum/new',
       name: 'newpost',
       component: NewPostVue
     },
     {
-      path: '/account/following',
+      path: '/FeedbackForum/account/following',
       name: 'following',
       component: FollowingVue
     },
     {
-      path: '/account/posts',
+      path: '/FeedbackForum/account/posts',
       name: 'accountPosts',
       component: AccountPostsVue
     }

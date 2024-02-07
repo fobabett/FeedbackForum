@@ -46,7 +46,7 @@ const onClickAction = (action: String, payload: any, value: Boolean) => {
       :router="router" />
     <v-row v-else>
       <v-col cols="12">
-        <p>You aren't following any songs at this time. Check out the <a @click="router.push('/')">Feed</a> and follow
+        <p>You aren't following any songs at this time. Check out the <a @click="router.push('/FeedbackForum/')">Feed</a> and follow
           some songs!</p>
       </v-col>
     </v-row>

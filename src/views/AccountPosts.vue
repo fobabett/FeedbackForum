@@ -28,7 +28,7 @@ onBeforeMount(async () => {
     <PostListVue v-if="account.posts.length > 0" :posts="posts" :account="account" :router="router" />
     <v-row v-else>
       <v-col cols="12">
-        <p>You haven't posted any songs yet. Go <a @click="router.push('/new')">here</a> to post a songs</p>
+        <p>You haven't posted any songs yet. Go <a @click="router.push('/FeedbackForum/new')">here</a> to post a songs</p>
       </v-col>
     </v-row>
   </v-container>

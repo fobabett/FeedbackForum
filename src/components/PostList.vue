@@ -7,7 +7,7 @@ const props = defineProps(['posts', 'account', 'onClickAction', 'router'])
 <template>
   <v-row dense>
     <v-col v-for="post in props.posts" :key="post.id" cols="12">
-      <v-card variant="plain" class="post" v-on:click="props.router.push(`/posts/${post.id}`)" prepend-icon="mdi-account"
+      <v-card variant="plain" class="post" v-on:click="props.router.push(`/FeedbackForum/posts/${post.id}`)" prepend-icon="mdi-account"
         :title="post.content.title" :subtitle="post.user.username">
         <v-container class="h-25">
           <div v-html="post.content.media"></div>
